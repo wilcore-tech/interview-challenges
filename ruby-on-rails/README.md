@@ -70,63 +70,32 @@ Two models are already defined. Your task is to complete their migrations with a
 
 ## Your Tasks
 
-### Part 1 — Migrations
+Complete the skeleton Rails application so that it meets the following criteria:
 
-Complete the empty migration files in `db/migrate/` so that the `people` and `organizations` tables are created with appropriate columns and data types.
+**1)** Complete the migration files in `db/migrate/` for both the `people` and `organizations` tables. Choose appropriate data types for each attribute.
 
----
-
-### Part 2 — GET `/people/:id`
-
-Implement the `show` action in `PeopleController`.
-
-- Returns a **200** with a JSON body containing only `first_name`, `last_name`, and `phone_number`.
-- Returns a **404** if the person does not exist.
+**2)** There is an endpoint at `GET /people/:id` which returns a JSON representation of a person, returning only `first_name`, `last_name`, and `phone_number`. If the person is not found, it returns a `404` status.
 
 ```
-GET /people/735  →  200  { first_name: "Tua", last_name: "Tagovailoa", phone_number: "555-666-7777" }
-GET /people/999  →  404  { error: "Person not found" }
+GET /people/735  →  200  { first_name: 'Tua', last_name: 'Tagovailoa', phone_number: '555-666-7777' }
+GET /people/999  →  404  { error: 'Person not found' }
 ```
 
----
-
-### Part 3 — POST `/people/:id/check_access`
-
-Implement the `check_access` action in `PeopleController`.
-
-A person has access to an organization if **both** of the following are true:
-- The person is marked `active`.
-- At least one of their `permission_codes` matches the organization's `code`.
-
-The request body provides the organization to check against:
-
-```json
-{ "organization": { "id": 257948 } }
-```
-
-- Returns a **200** with `{ access: true }` or `{ access: false }`.
-- Returns a **404** if the person does not exist.
+**3)** There is an endpoint at `POST /people/:id/check_access` which returns whether a `person` has access to an `organization`. If one of the person's `permission_codes` matches the organization's `code` and the person is marked `active`, they are considered to have access.
 
 ```
 POST /people/735/check_access  { organization: { id: 257948 } }  →  200  { access: true }
 POST /people/736/check_access  { organization: { id: 257948 } }  →  200  { access: false }
 ```
 
----
+**4)** Fill in the test stubs at `spec/requests/people_controller_request_spec.rb` with assertions for each of the following scenarios:
 
-### Part 4 — Tests
-
-The test file at `spec/requests/people_controller_request_spec.rb` contains stubs for all required scenarios. Fill in the test bodies:
-
-**GET `/people/:id`**
-- Person exists and is returned successfully
-- Person does not exist (404)
-
-**POST `/people/:id/check_access`**
-- Person does not exist (404)
-- Person exists but is inactive → `{ access: false }`
-- Person is active but has no matching permission code → `{ access: false }`
-- Person is active with a matching permission code → `{ access: true }`
+- `GET /people/:id` — person is found and returned successfully
+- `GET /people/:id` — person does not exist (404)
+- `POST /people/:id/check_access` — person does not exist (404)
+- `POST /people/:id/check_access` — person is inactive → `{ access: false }`
+- `POST /people/:id/check_access` — person is active but has no matching permission code → `{ access: false }`
+- `POST /people/:id/check_access` — person is active with a matching permission code → `{ access: true }`
 
 ---
 
