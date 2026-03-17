@@ -1,8 +1,38 @@
 #!/bin/bash -e
 
-# If running the rails server then create or migrate existing database
+# If running the rails server then create or migrate existing database,
+# then print the challenge banner.
 if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
   ./bin/rails db:prepare
+
+  echo ""
+  echo "================================================================"
+  echo "  Ruby on Rails Technical Challenge"
+  echo "================================================================"
+  echo ""
+  echo "  The skeleton app is running. Complete the following tasks:"
+  echo ""
+  echo "  1) Complete the migration files in db/migrate/ for the"
+  echo "     people and organizations tables. Then apply them:"
+  echo "     docker compose exec web bin/rails db:migrate"
+  echo ""
+  echo "  2) GET /people/:id"
+  echo "     Returns { first_name, last_name, phone_number }."
+  echo "     Returns 404 if the person does not exist."
+  echo ""
+  echo "  3) POST /people/:id/check_access"
+  echo "     Body: { organization: { id: <id> } }"
+  echo "     Returns { access: true/false }."
+  echo "     Access requires active status + matching permission code."
+  echo ""
+  echo "  4) Fill in the test stubs in"
+  echo "     spec/requests/people_controller_request_spec.rb"
+  echo "     Run tests: docker compose run --rm web bundle exec rspec"
+  echo ""
+  echo "  API available at: http://localhost:3000"
+  echo "  See README.md for full details."
+  echo "================================================================"
+  echo ""
 fi
 
 exec "${@}"
