@@ -131,10 +131,31 @@ The H2 database is pre-configured with sample data.
 - `schema.sql` - Creates the database tables on startup
 - `data.sql` - Seeds 15 sample contacts (with identity data for Path B)
 - `AddressBookApplication.java` - Spring Boot entry point
+- `controller/ContactController.java` - controller skeleton for the contact API
+- `service/ContactService.java` and `service/ContactServiceImpl.java` - service layer contract and starter implementation
+- `repository/ContactRepository.java` and `repository/VerificationAuditRepository.java` - JPA repository scaffolds
+- `dto/ContactRequest.java`, `dto/ContactResponse.java`, and `dto/VerificationRequest.java` - request/response payloads
+- `exception/GlobalExceptionHandler.java` and `exception/ResourceNotFoundException.java` - global error handling starter
 - **Model classes** (in `io.wilcore.addressbook.model`):
   - `Contact.java` - JPA entity mapped to the `contacts` table
   - `VerificationAudit.java` - JPA entity for audit logging (Path B)
   - `AccountLevel.java` - Enum for account verification levels (Path B)
+
+---
+
+## Starter structure
+
+This repository includes the minimal layered structure candidates should use:
+
+- `controller/` for request mapping and API endpoints
+- `service/` for business logic and orchestration
+- `repository/` for JPA persistence
+- `dto/` for API request/response schemas
+- `exception/` for shared error handling
+
+## Starter guidance
+
+Use the provided controller, service, repository, DTO, and exception packages as the base. The repository currently includes only scaffolding and unimplemented service methods, so candidates should wire up the API behavior themselves.
 
 ---
 
