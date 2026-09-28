@@ -6,7 +6,7 @@
 
 The goal of this challenge is to create an application that displays NASA's Astronomy Picture of the Day (APOD) for a specified timeframe, allowing users to explore a week's worth of celestial wonders. The application should feature a responsive, accessible, and visually appealing interface and support the ability to toggle between different images from the past 7 days.
 
-You will be assessed on your ability to integrate with an API, fixing and troubleshooting bugs, create a responsive UI, and handle errors gracefully.
+You will be assessed on your ability to integrate with an API, fixing and troubleshooting bugs, create a responsive UI, and handle errors gracefully. Communication is key. You are strongly discouraged from using an LLM/AI assistance during this challenge, but you may use Google to search things up for reference.
 
 ## Prerequisite
 
@@ -16,9 +16,9 @@ You will be assessed on your ability to integrate with an API, fixing and troubl
 
 ### 1. API Integration
 
-- Fetch data from NASA's APOD API. . Use `DEMO_KEY` for the API key, or register for your own key if you exceed the usage limit.
+- Fetch data from NASA's APOD API. Use `DEMO_KEY` for the API key, or register for your own key if you exceed the usage limit.
 - Retrieve a list of images and their associated information for a **7-day period**. Display one image per day.
-- **Caching**: Store the retrieved data locally to prevent repeated API calls for the same information. This can be done using browser storage (e.g., `localStorage` or `sessionStorage`) or in-memory storage if needed.
+- **Caching (optional)**: Store the retrieved data locally to prevent repeated API calls for the same information. This can be done using browser storage (e.g., `localStorage` or `sessionStorage`) or in-memory storage if needed.
 - **Error Handling**: Ensure proper error handling to manage issues such as failed API calls, rate limits, or connectivity problems.
 
 ### 2. Image Display
@@ -55,17 +55,20 @@ You will be assessed on your ability to integrate with an API, fixing and troubl
 - Does the image carousel or scroll mechanism provide smooth and intuitive navigation?
 - Did you implement the project with a focus on accessibility and usability?
 
-### Functionalit
+### Functionality
 
 - Does the app correctly retrieve and display images for the past 7 days from the NASA API?
 - Is there a working mechanism for favoriting images, and does it persist across sessions?
 - Does the app handle API errors or other issues gracefully (e.g., show a friendly message when the API is down)?
 
-### Creativity
+## Instructions
 
-- How creatively have you approached the UI design and user experience?
-- Were additional features (such as dark mode, or animations) implemented?
+Implement the following design and integrate the core features
 
-## Deliverables
+1. Integrate the API
+2. Display the images for the past 7 days OR between two dates
+3. Implement a favoriting system
+
+You may ask clarifying questions.
 
 ![Wilcore-Frontend-UI-Challenge.png](./Wilcore-Frontend-UI-Challenge.png)

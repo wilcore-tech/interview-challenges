@@ -1,3 +1,8 @@
+// Note the heart icon SVGs are in the /public folder
+// They can be imported as follows:
+// import HeartIcon from "../public/heart-outlined.svg?react";
+// import HeartIconFilled from "../public/heart-filled.svg?react";
+
 export default function DayCard(props) {
   return (
     <li className="day-card">
