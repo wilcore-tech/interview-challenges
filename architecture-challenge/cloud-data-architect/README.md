@@ -4,7 +4,7 @@
 
 This is a **design exercise, not a coding exercise.** You will read a scenario and a component team's architecture proposal submitted to the Architecture Review Board (ARB), then write a structured ARB Review Memo responding to the proposal.
 
-The expected effort is approximately **1.5 hours.** If you reach the time limit before finishing, note what you didn't get to and submit what you have — we will not hold an incomplete submission against you.
+We suggest budgeting around **2 hours** for this exercise. You are welcome to spend more time if you'd like, but we don't expect you to — a focused, well-reasoned memo is more valuable than an exhaustive one. If you don't cover everything, note what you left out and why; an incomplete submission that explains its own gaps will not be judged poorly.
 
 ---
 
