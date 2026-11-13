@@ -71,15 +71,6 @@
       margin: 1rem 0;
     }
 
-    .task-option {
-      background: #f6f8fa;
-      border: 1px solid #e1e4e8;
-      border-radius: 6px;
-      padding: .75rem 1rem;
-      margin: .5rem 0;
-    }
-    .task-option strong { font-size: 1.05em; }
-
     .adr-section {
       background: #f6f8fa;
       border-left: 4px solid #0366d6;
@@ -131,19 +122,13 @@
   <h2>Overview</h2>
   <p>
     This is a <strong>design exercise, not a coding exercise.</strong> You will read a scenario and
-    a component team's architecture proposal submitted to the Architecture Review Board (ARB),
-    then complete three tasks:
+    a component team's architecture proposal submitted to the Architecture Review Board (ARB), then
+    write a structured <strong>ARB Review Memo</strong> responding to the proposal.
   </p>
-  <ol>
-    <li><strong>ARB Review Memo</strong> — Write a structured ARB response to the proposal.</li>
-    <li><strong>Architecture Decision Record</strong> — Write a full ADR for the single most consequential decision in the proposal.</li>
-    <li><strong>Guardrails</strong> — Define 2–3 reusable reference patterns or guardrails that would prevent this class of problem in future onboarding.</li>
-  </ol>
   <p>
-    The expected effort is approximately <strong>2–3 hours.</strong> Complete treatment of one part
-    is more valuable than shallow coverage of all three. If you reach the time limit before finishing,
-    note what you didn't get to and submit what you have — we will not hold an incomplete submission
-    against you.
+    The expected effort is approximately <strong>1.5 hours.</strong> If you reach the time limit
+    before finishing, note what you didn't get to and submit what you have — we will not hold an
+    incomplete submission against you.
   </p>
   <p>
     Please submit at least <strong>4 hours before</strong> your scheduled review session.
@@ -422,11 +407,10 @@
 
   <hr>
 
-  <h2>Tasks</h2>
-
-  <h3>Task 1 — ARB Review Memo</h3>
+  <h2>Your Task — ARB Review Memo</h2>
   <p>
-    Write a structured ARB Review Memo. Your memo must:
+    Write a structured ARB Review Memo using the template provided in the repository
+    (<code>arb-memo-template.md</code>). Your memo must:
   </p>
   <ul>
     <li>State your recommendation: <strong>Approve</strong>, <strong>Approve with Conditions</strong>, or <strong>Defer</strong></li>
@@ -439,31 +423,6 @@
   <div class="adr-section"><strong>Policy / Principle Violated</strong> — The rule, standard, or architectural principle this violates</div>
   <div class="adr-section"><strong>Problem</strong> — What is wrong and why it matters</div>
   <div class="adr-section"><strong>Required Resolution</strong> — What the MCH team must specifically do before this proposal can be approved</div>
-
-  <h3>Task 2 — Architecture Decision Record</h3>
-  <p>
-    Write a full ADR for the <strong>single most consequential decision</strong> surfaced by the
-    proposal. You choose which decision to document — your selection itself is part of the
-    evaluation.
-  </p>
-  <p>Your ADR must include the following sections:</p>
-  <div class="adr-section"><strong>Context</strong> — What is the situation that makes this decision necessary? What constraints, risks, or requirements are in play?</div>
-  <div class="adr-section"><strong>Decision</strong> — What will be done? State it clearly and directly.</div>
-  <div class="adr-section"><strong>Consequences</strong> — Expected improvements, trade-offs, and new risks introduced.</div>
-  <div class="adr-section"><strong>Alternatives Considered</strong> — At least two rejected alternatives with reasons for rejection.</div>
-  <div class="adr-section"><strong>Compliance and Governance Notes</strong> — ATO, RMF, Zero Trust, or policy implications of this decision.</div>
-
-  <h3>Task 3 — Guardrails</h3>
-  <p>
-    Based on the issues you identified, define <strong>2–3 reusable guardrails or reference patterns</strong>
-    that the enterprise architecture would publish to prevent this class of problem during future
-    component platform onboarding.
-  </p>
-  <p>
-    Write these as short policy statements or pattern descriptions — a paragraph each is sufficient.
-    Think of them as entries in an enterprise architecture standards catalog: specific enough to enforce,
-    general enough to apply to any future onboarding team.
-  </p>
 
   <blockquote>
     The proposal above is realistic but incomplete in some areas deliberately, to allow for solution
@@ -487,22 +446,13 @@
         <td>Your completed ARB Review Memo</td>
       </tr>
       <tr>
-        <td><code>adr.md</code></td>
-        <td>Your completed Architecture Decision Record</td>
-      </tr>
-      <tr>
-        <td><code>guardrails.md</code></td>
-        <td>Your 2–3 guardrail or pattern definitions</td>
-      </tr>
-      <tr>
         <td><code>notes.md</code> <em>(optional)</em></td>
         <td>Anything you ran out of time on, assumptions made, or decisions you'd revisit</td>
       </tr>
     </tbody>
   </table>
   <p>
-    Length is <strong>1–2 pages per deliverable.</strong> Given the time window, brevity is expected —
-    a longer document is not a better one. Diagrams are optional.
+    Length is <strong>1–2 pages.</strong> Brevity is expected — a longer document is not a better one.
   </p>
 
   <hr>
@@ -514,12 +464,8 @@
     <span>You walk through your ARB memo and the issues you identified.</span>
   </div>
   <div class="review-phase">
-    <span class="time">~20 min</span>
-    <span>You present your ADR, including the decision you chose and the alternatives you rejected.</span>
-  </div>
-  <div class="review-phase">
-    <span class="time">~40 min</span>
-    <span>Questions covering your guardrails, federal compliance specifics, how you would handle pushback from the MCH team, and how these decisions connect to the broader enterprise reference architecture.</span>
+    <span class="time">~60 min</span>
+    <span>Questions covering your recommendation, how you would resolve each issue, what guardrails you would put in place to prevent this class of problem in future onboarding, and how your decisions connect to the enterprise reference architecture.</span>
   </div>
   <div class="review-phase">
     <span class="time">~10 min</span>
