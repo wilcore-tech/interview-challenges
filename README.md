@@ -6,16 +6,17 @@ This repository contains the technical interview challenges used by [Wilcore Tec
 
 ## Challenges
 
-| Role | Directory |
-|------|-----------|
-| Data Analyst / Data Scientist | [`data-analyst-challenge/`](./data-analyst-challenge/) |
-| Database Administrator | [`dba-challenge/`](./dba-challenge/) |
-| Data Engineer | [`data-engineer/customer-support-report`](./data-engineer/customer-support-report) |
-| DevOps Engineer | [`devops/`](./devops/) |
-| Frontend Engineer | [`nasa-pod/`](./nasa-pod/) |
-| Backend Engineer (Java) | [`java/spring-boot-challenge/`](./java/spring-boot-challenge/) |
-| Backend Engineer (Ruby) | [`ruby-on-rails/`](./ruby-on-rails/) |
-| Architect | [`architecture-challenge/`](./architecture-challenge/) |
+| Role | Directory | Preview |
+|------|-----------|---------|
+| Data Analyst / Data Scientist | [`data-analyst-challenge/`](./data-analyst-challenge/) | — |
+| Database Administrator | [`dba-challenge/`](./dba-challenge/) | — |
+| Data Engineer | [`data-engineer/customer-support-report`](./data-engineer/customer-support-report) | — |
+| DevOps Engineer | [`devops/`](./devops/) | — |
+| Frontend Engineer | [`nasa-pod/`](./nasa-pod/) | — |
+| Backend Engineer (Java) | [`java/spring-boot-challenge/`](./java/spring-boot-challenge/) | — |
+| Backend Engineer (Ruby) | [`ruby-on-rails/`](./ruby-on-rails/) | — |
+| Solution Architect | [`architecture-challenge/solution-architect/`](./architecture-challenge/solution-architect/) | [view](https://htmlpreview.github.io/?https://github.com/wilcore-tech/interview-challenges/blob/main/architecture-challenge/solution-architect/README.html) |
+| Cloud Data Architect | [`architecture-challenge/cloud-data-architect/`](./architecture-challenge/cloud-data-architect/) | [view](https://htmlpreview.github.io/?https://github.com/wilcore-tech/interview-challenges/blob/main/architecture-challenge/cloud-data-architect/README.html) |
 
 ---
 

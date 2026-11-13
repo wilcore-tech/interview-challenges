@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud Data Architect Challenge — Wilcore Technologies</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #24292e;
+      background: #fff;
+      padding: 32px 16px 64px;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: .3em; margin-bottom: 1rem; }
+    h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: .3em; margin: 2rem 0 .75rem; }
+    h3 { font-size: 1.15em; margin: 1.5rem 0 .5rem; }
+
+    p  { margin: .6rem 0 .8rem; }
+    ul, ol { padding-left: 1.6em; margin: .5rem 0 .8rem; }
+    li { margin: .25rem 0; }
+
+    hr { border: none; border-top: 1px solid #eaecef; margin: 2rem 0; }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: .75rem 0 1.25rem;
+      font-size: .95em;
+    }
+    th, td {
+      border: 1px solid #dfe2e5;
+      padding: 8px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f6f8fa; font-weight: 600; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: .875em;
+      background: #f6f8fa;
+      border: 1px solid #e1e4e8;
+      border-radius: 3px;
+      padding: 2px 5px;
+    }
+
+    blockquote {
+      border-left: 4px solid #dfe2e5;
+      padding: .5rem 1rem;
+      color: #6a737d;
+      margin: .75rem 0;
+    }
+
+    .callout {
+      background: #fff8e1;
+      border: 1px solid #f0c040;
+      border-left: 4px solid #f0c040;
+      border-radius: 4px;
+      padding: .75rem 1rem;
+      margin: 1rem 0;
+    }
+
+    .task-option {
+      background: #f6f8fa;
+      border: 1px solid #e1e4e8;
+      border-radius: 6px;
+      padding: .75rem 1rem;
+      margin: .5rem 0;
+    }
+    .task-option strong { font-size: 1.05em; }
+
+    .adr-section {
+      background: #f6f8fa;
+      border-left: 4px solid #0366d6;
+      border-radius: 0 4px 4px 0;
+      padding: .6rem 1rem;
+      margin: .4rem 0;
+    }
+    .adr-section strong { color: #0366d6; }
+
+    .review-phase {
+      display: flex;
+      gap: .5rem;
+      align-items: baseline;
+      margin: .3rem 0;
+    }
+    .review-phase .time {
+      font-size: .8em;
+      background: #e1e4e8;
+      border-radius: 12px;
+      padding: 1px 8px;
+      white-space: nowrap;
+      font-weight: 600;
+      color: #444;
+    }
+
+    .proposal {
+      background: #f6f8fa;
+      border: 1px solid #e1e4e8;
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+    }
+    .proposal h3 { margin-top: 1.25rem; }
+    .proposal h3:first-child { margin-top: 0; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Cloud Data Architect Challenge</h1>
+
+  <p style="font-size:.85em; color:#6a737d; margin-bottom:-.5rem;">
+    View this page formatted in your browser:
+    <a href="https://htmlpreview.github.io/?https://github.com/wilcore-tech/interview-challenges/blob/main/architecture-challenge/cloud-data-architect/README.html">htmlpreview link</a>
+  </p>
+
+  <hr>
+
+  <h2>Overview</h2>
+  <p>
+    This is a <strong>design exercise, not a coding exercise.</strong> You will read a scenario and
+    a component team's architecture proposal submitted to the Architecture Review Board (ARB),
+    then complete three tasks:
+  </p>
+  <ol>
+    <li><strong>ARB Review Memo</strong> — Write a structured ARB response to the proposal.</li>
+    <li><strong>Architecture Decision Record</strong> — Write a full ADR for the single most consequential decision in the proposal.</li>
+    <li><strong>Guardrails</strong> — Define 2–3 reusable reference patterns or guardrails that would prevent this class of problem in future onboarding.</li>
+  </ol>
+  <p>
+    The expected effort is approximately <strong>2–3 hours.</strong> Complete treatment of one part
+    is more valuable than shallow coverage of all three. If you reach the time limit before finishing,
+    note what you didn't get to and submit what you have — we will not hold an incomplete submission
+    against you.
+  </p>
+  <p>
+    Please submit at least <strong>4 hours before</strong> your scheduled review session.
+  </p>
+  <div class="callout">
+    You may send questions to your interviewer at any point before the session. We will answer
+    within the same business day. Requesting information you do not have is a normal part of this
+    exercise and is not counted against you.
+  </div>
+
+  <hr>
+
+  <h2>Background: The Enterprise Platform</h2>
+  <p>
+    You are the Cloud Data Architect for the <strong>Agency for Health Data Analytics (AHDA)</strong>,
+    a federal health agency operating an enterprise cloud data and analytics platform hosted on
+    <strong>Azure Government</strong>. The platform provides governed data storage, Databricks and
+    Azure Synapse Analytics compute, and policy controls for data practitioners across the agency.
+  </p>
+
+  <h3>Medallion Lakehouse Architecture</h3>
+  <p>The platform uses Azure Data Lake Storage Gen2 organized into three tiers:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Tier</th>
+        <th>Purpose</th>
+        <th>Data Classification Ceiling</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Bronze</strong></td>
+        <td>Raw ingest — untransformed source data</td>
+        <td>CUI / PHI</td>
+      </tr>
+      <tr>
+        <td><strong>Silver</strong></td>
+        <td>Cleansed and conformed — PII tokenized or removed</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td><strong>Gold</strong></td>
+        <td>Curated, analytics-ready — no raw PII or PHI</td>
+        <td>CUI / Low</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    All Databricks workloads are governed through <strong>Unity Catalog</strong> for lineage
+    tracking, access control, and audit. Analyst-facing tables are served exclusively from
+    Gold-tier assets registered in Unity Catalog.
+  </p>
+
+  <h3>Identity and Zero Trust</h3>
+  <p>
+    Identity follows <strong>Zero Trust Architecture (ZTA)</strong> principles enterprise-wide:
+    least privilege, workload identity federation, and attribute-based access control (ABAC)
+    at the data tier.
+  </p>
+
+  <h3>ATO and Change Management</h3>
+  <p>
+    The platform holds an <strong>Authority to Operate (ATO)</strong> under the NIST Risk
+    Management Framework (RMF). Any change that could affect the confidentiality, integrity,
+    or availability of the system — including the introduction of new data sources — requires
+    a <strong>Security Impact Analysis (SIA)</strong> prior to implementation, reviewed through
+    the platform's change intake workflow.
+  </p>
+
+  <h3>Architecture Review Board</h3>
+  <p>
+    The ARB reviews all proposals to onboard component platforms or add major capabilities.
+    You chair the ARB.
+  </p>
+
+  <hr>
+
+  <h2>The Proposal: MCH Division Analytics Platform</h2>
+  <p>
+    The Maternal and Child Health (MCH) Division has submitted the following proposal requesting
+    ARB approval to onboard a new analytics platform as a component platform within the enterprise.
+  </p>
+
+  <div class="proposal">
+
+    <h3>1. Executive Summary</h3>
+    <p>
+      The MCH Division requests ARB approval to onboard a new analytics platform as a component
+      platform within the enterprise data and analytics environment. The platform will enable MCH
+      analysts to access longitudinal health records for program participants and generate actionable
+      insights to support program delivery and reporting obligations.
+    </p>
+
+    <h3>2. Background and Motivation</h3>
+    <p>
+      The MCH Division currently generates reports by running manual SQL queries directly against
+      its operational case management database (CMS), hosted on-premises at the agency's co-located
+      data center. This approach creates performance pressure on the operational system, produces
+      inconsistent results across teams, and prevents adoption of modern analytics tooling.
+    </p>
+    <p>The proposed platform will:</p>
+    <ul>
+      <li>Decouple analytics workloads from the operational system</li>
+      <li>Provide a stable, versioned copy of program data for analysis</li>
+      <li>Enable self-service analytics for approximately 15 analysts across four MCH program offices</li>
+    </ul>
+
+    <h3>3. Data Description</h3>
+    <p>
+      The MCH CMS contains longitudinal health records for approximately <strong>2.4 million</strong>
+      program participants. Records include:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Data Element</th>
+          <th>Classification</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Participant demographics (name, DOB, SSN)</td>
+          <td>PHI / CUI</td>
+          <td>Covered under HIPAA Business Associate Agreement</td>
+        </tr>
+        <tr>
+          <td>Health encounter records</td>
+          <td>PHI / CUI</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Program enrollment and status</td>
+          <td>CUI</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Aggregate outcome metrics</td>
+          <td>Unclassified</td>
+          <td>Derived; no PII</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4. Proposed Architecture</h3>
+
+    <p><strong>4.1 Ingestion</strong></p>
+    <p>
+      An <strong>Azure Data Factory (ADF)</strong> pipeline will extract data from the MCH CMS using
+      a JDBC connection over the existing site-to-site VPN between the co-located data center and the
+      agency's Azure Government landing zone. Full load on the initial run; incremental (changed-data)
+      loads nightly thereafter.
+    </p>
+    <p>
+      Extracted records will land in <strong>Delta Lake tables</strong> in the MCH workspace under the
+      <code>mch_gold</code> schema, registered in the MCH Databricks workspace's default Hive catalog.
+    </p>
+
+    <p><strong>4.2 Storage</strong></p>
+    <p>
+      Data will be stored in <strong>Azure Data Lake Storage Gen2</strong> in the <code>mch-prod</code>
+      container within the enterprise storage account. Because MCH analysts require access to full
+      participant records for case-level reporting — including demographics and encounter histories —
+      extracted records will be written directly to the <strong>Gold tier</strong> of the enterprise
+      data lake.
+    </p>
+
+    <p><strong>4.3 Compute — Databricks Workspace</strong></p>
+    <p>
+      The MCH Division will operate a dedicated Databricks workspace (<code>dbx-mch-prod</code>)
+      provisioned within the MCH Azure resource group (<code>rg-mch-prod</code>). The workspace will
+      authenticate to Azure resources using a service principal (<code>sp-mch-databricks</code>) granted
+      <strong>Contributor</strong> role on <code>rg-mch-prod</code>. The service principal client secret
+      will be stored as a pipeline variable in the MCH Azure DevOps project for use in ADF and
+      notebook-triggered jobs.
+    </p>
+
+    <p><strong>4.4 Compute — Analytics Query Layer</strong></p>
+    <p>
+      A <strong>dedicated SQL Warehouse</strong> (Always On, XL, 16 DBUs) will serve Power BI Direct
+      Query connections for MCH analysts. The warehouse will remain active at all times to eliminate
+      cold-start latency for the analyst population.
+    </p>
+
+    <p><strong>4.5 Data Catalog and Documentation</strong></p>
+    <p>
+      The MCH team will maintain a <strong>data dictionary</strong> in a SharePoint list documenting
+      table schemas, field definitions, and data sources. This will serve as the authoritative metadata
+      reference for MCH analytics assets.
+    </p>
+
+    <p><strong>4.6 Identity and Access</strong></p>
+    <p>
+      Analyst access to MCH dashboards will be managed through MCH's existing Active Directory security
+      groups, enforced at the Power BI workspace level. No additional Databricks-level access controls
+      are planned at this time, as all 15 analysts share equivalent data access needs and operate under
+      the same BAA.
+    </p>
+
+    <h3>5. Network Connectivity</h3>
+    <p>
+      The ADF pipeline will connect to the on-premises CMS using the <strong>existing site-to-site
+      VPN</strong>. The team has confirmed with network operations that the VPN is already in place and
+      functional. No new network infrastructure, firewall rule changes, or additional routing
+      configurations are anticipated.
+    </p>
+
+    <h3>6. Compliance and Security</h3>
+    <p>
+      The proposed platform will operate within the <strong>existing ATO boundary</strong>. No new
+      FedRAMP-authorized services beyond those already in the platform's SSP are being introduced.
+      The MCH CMS already carries its own system boundary and SSP documentation at the agency.
+    </p>
+    <p>
+      Data classification and handling will comply with the agency's CUI policy. PHI handling will
+      remain under the existing BAA with the program's healthcare partners.
+    </p>
+
+    <h3>7. Cost Estimate</h3>
+    <table>
+      <thead>
+        <tr><th>Resource</th><th>Configuration</th><th>Monthly Estimate</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Azure Data Lake Storage Gen2</td>
+          <td>LRS, ~500 GB</td>
+          <td>~$10</td>
+        </tr>
+        <tr>
+          <td>Azure Data Factory</td>
+          <td>~1,000 pipeline activity runs/month</td>
+          <td>~$5</td>
+        </tr>
+        <tr>
+          <td>Databricks Workspace</td>
+          <td>XL SQL Warehouse, Always On, 16 DBU/hr</td>
+          <td>~$8,400</td>
+        </tr>
+        <tr>
+          <td>Power BI Premium Per User</td>
+          <td>15 seats</td>
+          <td>~$150</td>
+        </tr>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td></td>
+          <td><strong>~$8,565 / month</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>8. Proposed Timeline</h3>
+    <table>
+      <thead>
+        <tr><th>Milestone</th><th>Target</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ARB approval</td><td>Week 1</td></tr>
+        <tr><td>Infrastructure provisioning</td><td>Week 2–3</td></tr>
+        <tr><td>Initial data load and validation</td><td>Week 4</td></tr>
+        <tr><td>Analyst onboarding</td><td>Week 5</td></tr>
+      </tbody>
+    </table>
+
+    <h3>9. Open Items</h3>
+    <p>The team acknowledges the following items are deferred to a post-launch phase:</p>
+    <ul>
+      <li>Disaster recovery and backup strategy for the Delta tables</li>
+      <li>SLA commitments to analysts for pipeline freshness</li>
+      <li>Long-term data retention and archival policy</li>
+    </ul>
+
+  </div>
+
+  <hr>
+
+  <h2>Tasks</h2>
+
+  <h3>Task 1 — ARB Review Memo</h3>
+  <p>
+    Write a structured ARB Review Memo. Your memo must:
+  </p>
+  <ul>
+    <li>State your recommendation: <strong>Approve</strong>, <strong>Approve with Conditions</strong>, or <strong>Defer</strong></li>
+    <li>Identify every policy or design issue you find in the proposal</li>
+    <li>For each issue: name the problem, cite the relevant policy or principle it violates, and state precisely what the team must resolve before implementation</li>
+    <li>Be specific enough that the MCH team can act on your feedback without a follow-up meeting</li>
+  </ul>
+  <p>Structure each issue as:</p>
+  <div class="adr-section"><strong>Severity</strong> — Critical / Major / Minor</div>
+  <div class="adr-section"><strong>Policy / Principle Violated</strong> — The rule, standard, or architectural principle this violates</div>
+  <div class="adr-section"><strong>Problem</strong> — What is wrong and why it matters</div>
+  <div class="adr-section"><strong>Required Resolution</strong> — What the MCH team must specifically do before this proposal can be approved</div>
+
+  <h3>Task 2 — Architecture Decision Record</h3>
+  <p>
+    Write a full ADR for the <strong>single most consequential decision</strong> surfaced by the
+    proposal. You choose which decision to document — your selection itself is part of the
+    evaluation.
+  </p>
+  <p>Your ADR must include the following sections:</p>
+  <div class="adr-section"><strong>Context</strong> — What is the situation that makes this decision necessary? What constraints, risks, or requirements are in play?</div>
+  <div class="adr-section"><strong>Decision</strong> — What will be done? State it clearly and directly.</div>
+  <div class="adr-section"><strong>Consequences</strong> — Expected improvements, trade-offs, and new risks introduced.</div>
+  <div class="adr-section"><strong>Alternatives Considered</strong> — At least two rejected alternatives with reasons for rejection.</div>
+  <div class="adr-section"><strong>Compliance and Governance Notes</strong> — ATO, RMF, Zero Trust, or policy implications of this decision.</div>
+
+  <h3>Task 3 — Guardrails</h3>
+  <p>
+    Based on the issues you identified, define <strong>2–3 reusable guardrails or reference patterns</strong>
+    that the enterprise architecture would publish to prevent this class of problem during future
+    component platform onboarding.
+  </p>
+  <p>
+    Write these as short policy statements or pattern descriptions — a paragraph each is sufficient.
+    Think of them as entries in an enterprise architecture standards catalog: specific enough to enforce,
+    general enough to apply to any future onboarding team.
+  </p>
+
+  <blockquote>
+    The proposal above is realistic but incomplete in some areas deliberately, to allow for solution
+    flexibility. Where information is missing, either ask us or record the assumption you made and
+    proceed.
+  </blockquote>
+
+  <hr>
+
+  <h2>Deliverables</h2>
+  <p>
+    Create a <strong>private GitHub repository</strong> (or share your files directly) containing:
+  </p>
+  <table>
+    <thead>
+      <tr><th>File</th><th>Contents</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>arb-memo.md</code></td>
+        <td>Your completed ARB Review Memo</td>
+      </tr>
+      <tr>
+        <td><code>adr.md</code></td>
+        <td>Your completed Architecture Decision Record</td>
+      </tr>
+      <tr>
+        <td><code>guardrails.md</code></td>
+        <td>Your 2–3 guardrail or pattern definitions</td>
+      </tr>
+      <tr>
+        <td><code>notes.md</code> <em>(optional)</em></td>
+        <td>Anything you ran out of time on, assumptions made, or decisions you'd revisit</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    Length is <strong>1–2 pages per deliverable.</strong> Given the time window, brevity is expected —
+    a longer document is not a better one. Diagrams are optional.
+  </p>
+
+  <hr>
+
+  <h2>Review Session</h2>
+  <p>90 minutes, with two or three members of the team.</p>
+  <div class="review-phase">
+    <span class="time">~20 min</span>
+    <span>You walk through your ARB memo and the issues you identified.</span>
+  </div>
+  <div class="review-phase">
+    <span class="time">~20 min</span>
+    <span>You present your ADR, including the decision you chose and the alternatives you rejected.</span>
+  </div>
+  <div class="review-phase">
+    <span class="time">~40 min</span>
+    <span>Questions covering your guardrails, federal compliance specifics, how you would handle pushback from the MCH team, and how these decisions connect to the broader enterprise reference architecture.</span>
+  </div>
+  <div class="review-phase">
+    <span class="time">~10 min</span>
+    <span>Your questions for us.</span>
+  </div>
+
+</div>
+</body>
+</html>
